@@ -1,0 +1,2 @@
+Login: <USER_LOGIN>
+Password: <USER_PASSWORD>
