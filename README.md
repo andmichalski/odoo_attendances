@@ -6,8 +6,11 @@
 
 ### All rights reserved (c)
 
+Script fills attendances in ODOO from the last record to today.
+User have to specify: login, password, check in and check out in file "login.txt".
+
 Script requires:
-Python 3 (3.6 in this case), GIT, VirtualEnv, Chrome Webbrowser
+Python 3 (3.6 in this case), GIT, VirtualEnv, Chrome Web Browser
 
 Moreover chromedriver for selenium on disk (https://selenium-python.readthedocs.io/installation.html)
 
