@@ -1,6 +1,6 @@
 # Odoo Attendances
 
-## Simple Selenium script to fill attendances for employeer in ODOO.
+## Simple Selenium script to fill attendances for employeer in ODOO
 
 ### Author: Andrzej Michalski, Cervi Robotics
 
@@ -20,4 +20,3 @@ In command line type
 5. pip install -r requirements.txt
 6. Edit file "login.txt" - specify Login, password, check in and check out
 7. python3 odoo_attendances.py
-
