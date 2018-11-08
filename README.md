@@ -10,6 +10,8 @@ Script requires:
 Python 3 (3.6 in this case)
 GIT
 VirtualEnv
+Chrome Webbrowser
+chromedriver for selenium on disk (https://selenium-python.readthedocs.io/installation.html)
 
 Instalation Linux (Ubuntu):
 In command line type
@@ -19,5 +21,5 @@ In command line type
 4. . ./venv/bin/activate
 5. pip install -r requirements.txt
 6. Edit file "login.txt" - specify Login, password, check in and check out
-7. python3 fill_attendances.py
+7. python3 odoo_attendances.py
 
