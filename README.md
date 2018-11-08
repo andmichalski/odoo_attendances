@@ -7,11 +7,8 @@
 ### All rights reserved (c)
 
 Script requires:
-Python 3 (3.6 in this case)
-GIT
-VirtualEnv
-Chrome Webbrowser
-chromedriver for selenium on disk (https://selenium-python.readthedocs.io/installation.html)
+Python 3 (3.6 in this case), GIT, VirtualEnv, Chrome Webbrowser
+and chromedriver for selenium on disk (https://selenium-python.readthedocs.io/installation.html)
 
 Instalation Linux (Ubuntu):
 In command line type
