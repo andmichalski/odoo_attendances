@@ -3,13 +3,14 @@ import time
 from datetime import date, datetime, timedelta
 
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import TimeoutException
 
 LOGIN_FILE_PATH = "/home/amich/odoo_attendances/login_data.txt"
+
 
 class FillAttendances():
 
@@ -26,7 +27,8 @@ class FillAttendances():
 
     def parse_base_user_data(self):
         with open(LOGIN_FILE_PATH, "r") as file:
-            data = [line.replace('\n', '').split(" ")[1] for line in file.readlines()]
+            data = [line.replace('\n', '').split(" ")[1] for line in
+                    file.readlines()]
             self.login = data[0]
             self.password = data[1]
             self.check_in_hours = data[2]
@@ -47,8 +49,8 @@ class FillAttendances():
         password_element.send_keys(Keys.RETURN)
 
         attendance_button = self.wait.until(EC.element_to_be_clickable((
-                                                                       By.XPATH,
-                                                                       "/html/body/div[1]/div[1]/div[1]/div[11]/ul/li[1]/a/span")))
+            By.XPATH,
+            "/html/body/div[1]/div[1]/div[1]/div[11]/ul/li[1]/a/span")))
         attendance_button.click()
 
     def find_last_filled_date(self):
@@ -58,16 +60,18 @@ class FillAttendances():
                                                     "/html/body/div[1]/div[2]/div[1]/div[1]/div/input"))).send_keys(
             self.surname, Keys.ENTER)
         time.sleep(1)
-        last_record = self.wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[2]/div[2]/div/div/div/table/tbody/tr[1]/td[3]")))
+        last_record = self.wait.until(EC.element_to_be_clickable((By.XPATH,
+                                                                  "/html/body/div[1]/div[2]/div[2]/div/div/div/table/tbody/tr[1]/td[3]")))
         last_date = last_record.text.split(" ")[0]
         return last_date
 
-    def create_new_attendance(self, attendance_date = "11/07/2018"):
+    def create_new_attendance(self, attendance_date="11/07/2018"):
         check_in_time = attendance_date + " " + self.check_in_hours
         check_out_time = attendance_date + " " + self.check_out_hours
 
         try:
-            self.short_wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[2]/div[1]/div[2]/div[1]/div/div[1]/button[2]"))).click()
+            self.short_wait.until(EC.element_to_be_clickable((By.XPATH,
+                                                              "/html/body/div[1]/div[2]/div[1]/div[2]/div[1]/div/div[1]/button[2]"))).click()
         except TimeoutException:
             self.wait.until(EC.element_to_be_clickable((By.XPATH,
                                                         "/html/body/div[1]/div[2]/div[1]/div[2]/div[1]/div/button[1]"))).click()
@@ -101,7 +105,6 @@ class FillAttendances():
             "/html/body/div[1]/div[2]/div[1]/div[2]/div[1]/div/div[2]/button[1]").click()
 
 
-
 class FindWorkDays():
 
     def find_work_days(self, last_flled_date_str="11/01/2018"):
@@ -109,8 +112,8 @@ class FindWorkDays():
 
         last_filled_values = last_flled_date_str.split("/")
         last_filled_date = date(int(last_filled_values[2]),
-                                        int(last_filled_values[0]),
-                                        int(last_filled_values[1]))
+                                int(last_filled_values[0]),
+                                int(last_filled_values[1]))
 
         begin_date = last_filled_date + timedelta(days=1)
         dates_delta = today_date - begin_date

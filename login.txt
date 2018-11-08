@@ -1,2 +1,4 @@
 Login: <USER_LOGIN>
 Password: <USER_PASSWORD>
+CheckIn: 09:00:00
+CheckOut: 17:00:00
