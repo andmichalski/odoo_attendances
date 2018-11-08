@@ -1,10 +1,10 @@
-"odoo_attendances"
+# Odoo Attendances
 
-Simple Selenium script to fill attendances for employeer in ODOO.
+## Simple Selenium script to fill attendances for employeer in ODOO.
 
-Author: Andrzej Michalski, Cervi Robotics
+### Author: Andrzej Michalski, Cervi Robotics
 
-All rights reserved (c)
+### All rights reserved (c)
 
 Script requires:
 Python 3 (3.6 in this case)
