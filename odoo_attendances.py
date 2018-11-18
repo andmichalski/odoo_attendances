@@ -1,4 +1,4 @@
-import re
+import os
 import time
 from datetime import date, datetime, timedelta
 
@@ -9,7 +9,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-LOGIN_FILE_PATH = "/home/amich/odoo_attendances/login.txt"
+CURRENT_PATH = os.getcwd()
+LOGIN_FILE_PATH = CURRENT_PATH + "/login.txt"
 
 
 class FillAttendances():
@@ -20,10 +21,10 @@ class FillAttendances():
         self.short_wait = WebDriverWait(self.driver, 2)
         self.login = None
         self.password = None
-        self.check_in_hours = None
-        self.check_out_hours = None
         self.name = None
         self.surname = None
+        self.check_in_hours = None
+        self.check_out_hours = None
 
     def parse_base_user_data(self):
         with open(LOGIN_FILE_PATH, "r") as file:
@@ -31,12 +32,10 @@ class FillAttendances():
                     file.readlines()]
             self.login = data[0]
             self.password = data[1]
-            self.check_in_hours = data[2]
-            self.check_out_hours = data[3]
-
-        email = re.split("\.|\@", self.login)
-        self.name = email[0].title()
-        self.surname = email[1].title()
+            self.name = data[2]
+            self.surname = data[3]
+            self.check_in_hours = data[4]
+            self.check_out_hours = data[5]
 
     def login_user(self):
         self.driver.get("https://odoo.servocode.com/web#menu_id=386&action=542")
