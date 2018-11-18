@@ -18,8 +18,9 @@ Instalation Linux (Ubuntu):
 In command line type
 1. git clone https://github.com/andmichalski/odoo_attendances
 2. cd odoo_attendances/
-3. virtualenv --python=python3 venv
-4. . ./venv/bin/activate
-5. pip install -r requirements.txt
-6. Edit file "login.txt" - specify Login, password, check in and check out
-7. python3 odoo_attendances.py
+3. Download and unpack chromedriver to folder "odoo_attendances" from website http://chromedriver.chromium.org/downloads
+4. (in folder odoo_attendances type) virtualenv --python=python3 venv
+5. . ./venv/bin/activate
+6. pip install -r requirements.txt
+7. Edit file "login.txt" - specify Login, password, check in and check out
+8. python3 odoo_attendances.py

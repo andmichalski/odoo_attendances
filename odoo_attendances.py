@@ -11,12 +11,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 CURRENT_PATH = os.getcwd()
 LOGIN_FILE_PATH = CURRENT_PATH + "/login.txt"
+CHROMEDRIVER_PATH = CURRENT_PATH + "/chromedriver"
 
 
 class FillAttendances():
 
     def __init__(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(CHROMEDRIVER_PATH)
         self.wait = WebDriverWait(self.driver, 10)
         self.short_wait = WebDriverWait(self.driver, 2)
         self.login = None
@@ -47,9 +48,12 @@ class FillAttendances():
         password_element.send_keys(self.password)
         password_element.send_keys(Keys.RETURN)
 
-        attendance_button = self.wait.until(EC.element_to_be_clickable((
-            By.XPATH,
-            "/html/body/div[1]/div[1]/div[1]/div[11]/ul/li[1]/a/span")))
+        time.sleep(1)
+        elements = self.driver.find_elements_by_link_text("Attendances")
+        locs = [el.location['y'] for el in elements]
+        max_y = max(locs)
+        index = locs.index(max_y)
+        attendance_button = elements[index]
         attendance_button.click()
 
     def find_last_filled_date(self):
